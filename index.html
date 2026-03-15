@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Happy Birthday My Baby</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+background:black;
+color:white;
+font-family:'Poppins',sans-serif;
+text-align:center;
+overflow:hidden;
+}
+
+/* stars */
+
+.stars{
+position:fixed;
+width:100%;
+height:100%;
+background:url("https://i.imgur.com/YKY28eT.png");
+animation:starsmove 120s linear infinite;
+z-index:-1;
+}
+
+@keyframes starsmove{
+from{background-position:0 0;}
+to{background-position:10000px 5000px;}
+}
+
+.container{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:90%;
+}
+
+/* gift */
+
+#giftBox{
+font-size:120px;
+cursor:pointer;
+animation:bounce 2s infinite;
+}
+
+@keyframes bounce{
+0%{transform:translateY(0)}
+50%{transform:translateY(-15px)}
+100%{transform:translateY(0)}
+}
+
+/* typing */
+
+#typing{
+font-size:22px;
+min-height:120px;
+}
+
+/* photo */
+
+.photo{
+width:260px;
+height:320px;
+border-radius:20px;
+margin-top:20px;
+box-shadow:0 0 30px pink;
+}
+
+/* hearts */
+
+.heart{
+position:fixed;
+font-size:40px;
+animation:float 10s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh)}
+100%{transform:translateY(-120vh)}
+}
+
+/* balloons */
+
+.balloon{
+position:fixed;
+font-size:70px;
+animation:fly 18s linear infinite;
+}
+
+@keyframes fly{
+0%{transform:translateY(110vh)}
+100%{transform:translateY(-120vh)}
+}
+
+/* cake */
+
+#cake{
+font-size:120px;
+}
+
+#flame{
+font-size:40px;
+animation:flicker 0.6s infinite alternate;
+}
+
+@keyframes flicker{
+from{transform:scale(1)}
+to{transform:scale(1.2)}
+}
+
+button{
+margin:10px;
+padding:12px 25px;
+font-size:18px;
+border:none;
+border-radius:8px;
+background:#ff4da6;
+color:white;
+cursor:pointer;
+}
+
+/* final message */
+
+#finalCard{
+margin-top:30px;
+font-size:20px;
+line-height:32px;
+max-width:520px;
+margin-left:auto;
+margin-right:auto;
+color:#ffd6f2;
+background:rgba(255,255,255,0.06);
+padding:25px;
+border-radius:14px;
+box-shadow:0 0 25px rgba(255,105,180,0.6);
+}
+
+/* love rain */
+
+.loveText{
+position:fixed;
+color:#ff66cc;
+font-size:28px;
+font-weight:bold;
+animation:loveFloat 6s linear infinite;
+}
+
+@keyframes loveFloat{
+
+0%{
+transform:translateY(100vh);
+opacity:0;
+}
+
+30%{opacity:1;}
+
+100%{
+transform:translateY(-120vh);
+opacity:0;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<!-- Gift -->
+
+<div id="giftScene" class="container">
+<h1>A Surprise For My Baby 🎁</h1>
+<div id="giftBox" onclick="openGift()">🎁</div>
+<p>Click the gift</p>
+</div>
+
+<!-- Intro -->
+
+<div id="slide1" class="container" style="display:none">
+
+<h1>Happy Birthday My Baby 🎂</h1>
+
+<p id="typing"></p>
+
+<img id="photo" src="photos/1.jpg" class="photo">
+
+</div>
+
+<!-- Cake -->
+
+<div id="slide2" class="container" style="display:none">
+
+<h1>Make a Wish Meri Jaan ✨</h1>
+
+<div id="cake">🎂</div>
+
+<div id="flame">🔥</div>
+
+<br>
+
+<button onclick="blowCandle()">Blow Candle 💨</button>
+
+<button onclick="cutCake()">Cut Cake 🔪</button>
+
+<p id="cakeMsg"></p>
+
+</div>
+
+<!-- Final Message -->
+
+<div id="slide3" class="container" style="display:none">
+
+<h1>💖 A Message For My Love</h1>
+
+<div id="finalCard">
+
+🎂 Happy Birthday My Loving Baby! 🎉 <br><br>
+
+Meri Jaan, tumhari smile duniya ki sabse pyari cheez hai.  
+Tum meri life ki sabse beautiful feeling ho.  
+Bhagwan kare tumhari zindagi hamesha khushiyon se bhari rahe  
+aur tumhari ye pyari si smile kabhi fade na ho. 😊🌸 <br><br>
+
+🎈 Happy Birthday once again, Sweetheart!  
+Meri cute si baby, tum hamesha khush raho aur life me bohot success pao. 🌟🎁
+
+</div>
+
+</div>
+
+<script>
+
+/* open gift */
+
+function openGift(){
+
+document.getElementById("giftScene").style.display="none"
+
+document.getElementById("slide1").style.display="block"
+
+type()
+
+}
+
+/* typing */
+
+const lines=[
+
+"Hey Baby...",
+"",
+"Today is a very special day 💖",
+"",
+"Happy Birthday Meri Jaan 🎂",
+"",
+"You are my sweetest Cutie ❤️",
+"",
+"My life feels brighter because of you ✨"
+
+]
+
+let lineIndex=0
+let charIndex=0
+
+const speed=60
+const pause=2500
+
+const text=document.getElementById("typing")
+
+function type(){
+
+if(lineIndex<lines.length){
+
+if(charIndex<lines[lineIndex].length){
+
+text.innerHTML+=lines[lineIndex].charAt(charIndex)
+
+charIndex++
+
+setTimeout(type,speed)
+
+}else{
+
+text.innerHTML+="<br>"
+
+lineIndex++
+charIndex=0
+
+setTimeout(type,pause)
+
+}
+
+}else{
+
+setTimeout(showCake,3000)
+
+}
+
+}
+
+/* photos */
+
+let photos=[
+"photos/1.jpg",
+"photos/2.jpg",
+"photos/3.jpg",
+"photos/4.jpg",
+"photos/5.jpg"
+]
+
+let p=0
+
+setInterval(function(){
+
+p++
+
+if(p>=photos.length){p=0}
+
+document.getElementById("photo").src=photos[p]
+
+},5000)
+
+/* hearts */
+
+setInterval(function(){
+
+let h=document.createElement("div")
+
+h.className="heart"
+h.innerHTML="❤️"
+
+h.style.left=Math.random()*100+"%"
+
+document.body.appendChild(h)
+
+setTimeout(()=>{h.remove()},10000)
+
+},3000)
+
+/* balloons */
+
+setInterval(function(){
+
+let b=document.createElement("div")
+
+b.className="balloon"
+b.innerHTML="🎈"
+
+b.style.left=Math.random()*100+"%"
+
+document.body.appendChild(b)
+
+setTimeout(()=>{b.remove()},18000)
+
+},7000)
+
+/* show cake */
+
+function showCake(){
+
+document.getElementById("slide1").style.display="none"
+
+document.getElementById("slide2").style.display="block"
+
+}
+
+/* blow candle */
+
+function blowCandle(){
+
+let flame=document.getElementById("flame")
+
+flame.style.transform="scale(0)"
+
+flame.style.opacity="0"
+
+setTimeout(function(){
+
+flame.innerHTML="💨"
+
+flame.style.transform="scale(1)"
+
+setTimeout(()=>{flame.style.display="none"},700)
+
+},600)
+
+}
+
+/* cake cut */
+
+function cutCake(){
+
+document.getElementById("cake").innerHTML="🍰"
+
+document.getElementById("cakeMsg").innerHTML="Cake Cut Successfully 🎉"
+
+confetti()
+
+setTimeout(function(){
+
+document.getElementById("slide2").style.display="none"
+
+document.getElementById("slide3").style.display="block"
+
+loveRain()
+
+},3000)
+
+}
+
+/* confetti */
+
+function confetti(){
+
+for(let i=0;i<40;i++){
+
+let c=document.createElement("div")
+
+c.innerHTML="🎉"
+
+c.style.position="fixed"
+
+c.style.left=Math.random()*100+"%"
+c.style.top=Math.random()*100+"%"
+
+c.style.fontSize="30px"
+
+document.body.appendChild(c)
+
+setTimeout(()=>{c.remove()},3000)
+
+}
+
+}
+
+/* love rain */
+
+function loveRain(){
+
+setInterval(function(){
+
+let love=document.createElement("div")
+
+love.className="loveText"
+
+love.innerHTML="I Love You Baby ❤️"
+
+love.style.left=Math.random()*100+"%"
+
+document.body.appendChild(love)
+
+setTimeout(()=>{love.remove()},6000)
+
+},1200)
+
+}
+
+</script>
+
+</body>
+</html>
